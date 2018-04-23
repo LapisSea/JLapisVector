@@ -91,11 +91,16 @@
         </plugins>
     </build>
     <dependencies>
-        <dependency>
-            <groupId>net.sf.trove4j</groupId>
-            <artifactId>trove4j</artifactId>
-            <version>3.0.3</version>
-        </dependency>
+		<dependency>
+			<groupId>net.sf.trove4j</groupId>
+			<artifactId>trove4j</artifactId>
+			<version>3.0.3</version>
+		</dependency>
+		<dependency>
+			<groupId>com.github.lapissea</groupId>
+			<artifactId>jlapisutil</artifactId>
+			<version>1.0.3</version>
+		</dependency>
     </dependencies>
     <packaging>jar</packaging>
 
@@ -131,9 +136,9 @@
     </distributionManagement>
 
     <scm>
-        <connection>scm:git:git://github.com/LapisSea/JLapisUtility.git</connection>
-        <developerConnection>scm:git:ssh://github.com:LapisSea/JLapisUtility.git</developerConnection>
-        <url>http://github.com/LapisSea/JLapisUtility/tree/master</url>
+        <connection>scm:git:git://github.com/LapisSea/JLapisVector.git</connection>
+        <developerConnection>scm:git:ssh://github.com:LapisSea/JLapisVector.git</developerConnection>
+        <url>http://github.com/LapisSea/JLapisVector/tree/master</url>
     </scm>
 
     <properties>
