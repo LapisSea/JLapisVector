@@ -208,4 +208,29 @@ public class Vec2i implements Calculateable<Vec2i>, Serializable, IVec2iR, IVec2
 	public Vec2iFinal immutable(){
 		return new Vec2iFinal(this);
 	}
+	
+	public Vec2i max(IVec2iR other){
+		return max(other.x(), other.y());
+	}
+	
+	public Vec2i min(IVec2iR other){
+		return min(other.x(), other.y());
+	}
+	
+	public Vec2i max(int x, int y){
+		return set(Math.max(x(), x), Math.max(y(), y));
+	}
+	
+	public Vec2i min(int x, int y){
+		return set(Math.min(x(), x), Math.min(y(), y));
+	}
+	
+	public float max(){
+		return Math.max(x(), y());
+	}
+	
+	public float min(){
+		return Math.min(x(), y());
+	}
+	
 }

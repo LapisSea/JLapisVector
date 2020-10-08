@@ -34,4 +34,8 @@ public interface IVec2iR{
 	default boolean isZero(){
 		return x()==0&&y()==0;
 	}
+	
+	default boolean equals(int x, int y){
+		return x()==x&&y()==y;
+	}
 }

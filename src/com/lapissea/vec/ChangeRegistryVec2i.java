@@ -11,6 +11,10 @@ public class ChangeRegistryVec2i extends Vec2i{
 	
 	private List<Consumer<ChangeRegistryVec2i>> listeners;
 	
+	public boolean register(Runnable listener){
+		return register(v->listener.run());
+	}
+	
 	public boolean register(Consumer<ChangeRegistryVec2i> listener){
 		if(listeners==null) listeners=new ArrayList<>(2);
 		else if(listeners.contains(listener)) return false;
@@ -22,7 +26,7 @@ public class ChangeRegistryVec2i extends Vec2i{
 		return listeners!=null&&listeners.remove(listener);
 	}
 	
-	private void dispatch(ChangeRegistryVec2i obj){
+	public void dispatch(ChangeRegistryVec2i obj){
 		if(listeners==null) return;
 		for(Consumer<ChangeRegistryVec2i> listener : listeners){
 			listener.accept(obj);

@@ -3,6 +3,7 @@ package com.lapissea.vec.color;
 import com.lapissea.util.MathUtil;
 import com.lapissea.util.NotNull;
 import com.lapissea.util.ObjectSize.Getter;
+import com.lapissea.util.Rand;
 
 import java.awt.*;
 import java.nio.ByteBuffer;
@@ -38,10 +39,10 @@ public interface IColorM extends IColorMSolid{
 	
 	@NotNull
 	static <T extends ColorM> T randomRGBA(@NotNull T target){
-		target.r((float)Math.random());
-		target.g((float)Math.random());
-		target.b((float)Math.random());
-		target.a((float)Math.random());
+		target.r(Rand.f());
+		target.g(Rand.f());
+		target.b(Rand.f());
+		target.a(Rand.f());
 		return target;
 	}
 	

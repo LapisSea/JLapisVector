@@ -36,6 +36,10 @@ public class ColorM extends ColorMRead implements Calculateable<ColorM>, Interpo
 		load(offset, data);
 	}
 	
+	public ColorM(IColorMSolid solid, float a){
+		this(solid.r(), solid.g(), solid.b(), a);
+	}
+	
 	public ColorM(float[] data){
 		load(data);
 	}
@@ -322,8 +326,8 @@ public class ColorM extends ColorMRead implements Calculateable<ColorM>, Interpo
 	
 	@NotNull
 	public ColorM set(int rgb){
-		r=(rgb>>16&0xFF)/256F;
-		g=(rgb>>8&0xFF)/256F;
+		r=(rgb >> 16&0xFF)/256F;
+		g=(rgb >> 8&0xFF)/256F;
 		b=(rgb&0xFF)/256F;
 		return this;
 	}

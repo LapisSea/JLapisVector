@@ -1,12 +1,9 @@
 package com.lapissea.vec;
 
-import com.lapissea.util.LogUtil;
 import com.lapissea.util.NotNull;
 import com.lapissea.util.Nullable;
 import com.lapissea.vec.interf.*;
 import gnu.trove.list.TFloatList;
-
-import java.nio.ByteBuffer;
 
 public class Vec3f implements IVec3fR, IVec3fW, Interpolateble<Vec3f>, IRotation, SimpleLoadable<Vec3f>{
 	
@@ -117,6 +114,21 @@ public class Vec3f implements IVec3fR, IVec3fW, Interpolateble<Vec3f>, IRotation
 	}
 	
 	@NotNull
+	public Vec3f addXY(@NotNull IVec2iR vec){
+		return addXY(vec.x(), vec.y());
+	}
+	
+	@NotNull
+	public Vec3f addXY(@NotNull Vec2f vec){
+		return addXY(vec.x(), vec.y());
+	}
+	
+	@NotNull
+	public Vec3f addXY(float x, float y){
+		return addX(x).addY(y);
+	}
+	
+	@NotNull
 	@Override
 	public Vec3f clone(){
 		return new Vec3f(x(), y(), z());
@@ -179,9 +191,16 @@ public class Vec3f implements IVec3fR, IVec3fW, Interpolateble<Vec3f>, IRotation
 	@NotNull
 	@Override
 	public Vec3f set(float x, float y, float z){
-		this.x=x;
-		this.y=y;
-		this.z=z;
+		this.x(x);
+		this.y(y);
+		this.z(z);
+		return this;
+	}
+	
+	public Vec3f set(float[] src, int pos){
+		this.x(src[pos]);
+		this.y(src[pos+1]);
+		this.z(src[pos+2]);
 		return this;
 	}
 	
@@ -231,7 +250,7 @@ public class Vec3f implements IVec3fR, IVec3fW, Interpolateble<Vec3f>, IRotation
 	public Vec3f load(@NotNull String string, int start, int end){
 		if(end>string.length()) throw new IllegalArgumentException("End "+end+" can not be larger than total length of "+string.length());
 		if(start<0) throw new IllegalArgumentException("Start has to be positive!");
-		if(start>=end) throw new IllegalArgumentException("Start has to be smaller than end!");
+		if(start >= end) throw new IllegalArgumentException("Start has to be smaller than end!");
 		
 		boolean       begin=true, lastSpace=false;
 		StringBuilder buff =new StringBuilder();
@@ -327,17 +346,17 @@ public class Vec3f implements IVec3fR, IVec3fW, Interpolateble<Vec3f>, IRotation
 	}
 	
 	@NotNull
-	public Vec3f mulX(int x){
+	public Vec3f mulX(float x){
 		return x(x()*x);
 	}
 	
 	@NotNull
-	public Vec3f mulY(int y){
+	public Vec3f mulY(float y){
 		return y(y()*y);
 	}
 	
 	@NotNull
-	public Vec3f mulZ(int z){
+	public Vec3f mulZ(float z){
 		return z(z()*z);
 	}
 	
@@ -355,9 +374,9 @@ public class Vec3f implements IVec3fR, IVec3fW, Interpolateble<Vec3f>, IRotation
 	
 	@NotNull
 	public Vec3f set(@NotNull IVec3fR src){
-		x=src.x();
-		y=src.y();
-		z=src.z();
+		x(src.x());
+		y(src.y());
+		z(src.z());
 		return this;
 	}
 	
@@ -454,6 +473,18 @@ public class Vec3f implements IVec3fR, IVec3fW, Interpolateble<Vec3f>, IRotation
 		return this;
 	}
 	
+	public Vec3f subX(float x){
+		return x(x()-x);
+	}
+	
+	public Vec3f subY(float y){
+		return y(y()-y);
+	}
+	
+	public Vec3f subZ(float z){
+		return z(z()-z);
+	}
+	
 	@NotNull
 	@Override
 	public String toString(){
@@ -526,6 +557,16 @@ public class Vec3f implements IVec3fR, IVec3fW, Interpolateble<Vec3f>, IRotation
 	public void clampX(float min, float max){
 		if(x()<min) x(min);
 		else if(x()>max) x(max);
+	}
+	
+	public void clampY(float min, float max){
+		if(y()<min) y(min);
+		else if(y()>max) y(max);
+	}
+	
+	public void clampZ(float min, float max){
+		if(z()<min) z(min);
+		else if(z()>max) z(max);
 	}
 	
 }
