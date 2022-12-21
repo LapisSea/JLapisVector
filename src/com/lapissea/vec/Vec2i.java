@@ -5,13 +5,14 @@ import com.lapissea.vec.interf.Calculateable;
 import com.lapissea.vec.interf.IVec2iR;
 import com.lapissea.vec.interf.IVec2iW;
 
-import java.awt.*;
+import java.awt.Dimension;
+import java.awt.Point;
 import java.io.Serializable;
 import java.util.function.BiConsumer;
 
 public class Vec2i implements Calculateable<Vec2i>, Serializable, IVec2iR, IVec2iW{
 	
-	private static final long serialVersionUID=7737581116406153679L;
+	private static final long serialVersionUID = 7737581116406153679L;
 	
 	private int x;
 	private int y;
@@ -40,20 +41,20 @@ public class Vec2i implements Calculateable<Vec2i>, Serializable, IVec2iR, IVec2
 	}
 	
 	public Vec2i set(int x, int y){
-		this.x=x;
-		this.y=y;
+		this.x = x;
+		this.y = y;
 		return this;
 	}
 	
 	@Override
 	public Vec2i x(int x){
-		this.x=x;
+		this.x = x;
 		return this;
 	}
 	
 	@Override
 	public Vec2i y(int y){
-		this.y=y;
+		this.y = y;
 		return this;
 	}
 	
@@ -80,21 +81,21 @@ public class Vec2i implements Calculateable<Vec2i>, Serializable, IVec2iR, IVec2
 	@NotNull
 	@Override
 	public Vec2i add(@NotNull Vec2i c){
-		set(x()+c.x(), y()+c.y());
+		set(x() + c.x(), y() + c.y());
 		return this;
 	}
 	
 	@NotNull
 	@Override
 	public Vec2i sub(@NotNull Vec2i c){
-		set(x()-c.x(), y()-c.y());
+		set(x() - c.x(), y() - c.y());
 		return this;
 	}
 	
 	@NotNull
 	@Override
 	public Vec2i subRev(@NotNull Vec2i c){
-		set(c.x()-x(), c.y()-y());
+		set(c.x() - x(), c.y() - y());
 		return this;
 	}
 	
@@ -152,7 +153,7 @@ public class Vec2i implements Calculateable<Vec2i>, Serializable, IVec2iR, IVec2
 	@NotNull
 	@Override
 	public String toString(){
-		return "Vec2i{x="+x()+", y="+y()+"}";
+		return "Vec2i{x=" + x() + ", y=" + y() + "}";
 	}
 	
 	@NotNull
@@ -177,25 +178,25 @@ public class Vec2i implements Calculateable<Vec2i>, Serializable, IVec2iR, IVec2
 	
 	@Override
 	public double length(){
-		return Math.sqrt(x()*x()+y()*y());
+		return Math.sqrt(x()*x() + y()*y());
 	}
 	
 	@Override
 	public double distanceTo(@NotNull IVec2iR pos){
-		int x=x()-pos.x(), y=y()-pos.y();
-		return Math.sqrt(x*x+y*y);
+		int x = x() - pos.x(), y = y() - pos.y();
+		return Math.sqrt(x*x + y*y);
 	}
 	
 	@Override
 	public boolean equals(Object obj){
 		if(!(obj instanceof IVec2iR)) return false;
-		IVec2iR other=(IVec2iR)obj;
-		return x()==other.x()&&y()==other.y();
+		IVec2iR other = (IVec2iR)obj;
+		return x() == other.x() && y() == other.y();
 	}
 	
 	@Override
 	public int hashCode(){
-		return (x()<<16)+y();
+		return (x()<<16) + y();
 	}
 	
 	public void clampX(int min, int max){

@@ -4,7 +4,7 @@ package com.lapissea.vec.interf;
 import com.lapissea.util.NotNull;
 
 public interface IColor{
-
+	
 	float r();
 	float g();
 	float b();

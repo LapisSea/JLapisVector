@@ -14,12 +14,12 @@ public interface IVec2iR{
 	int y();
 	
 	default double length(){
-		return Math.sqrt(x()*x()+y()*y());
+		return Math.sqrt(x()*x() + y()*y());
 	}
 	
 	default double distanceTo(@NotNull IVec2iR pos){
-		int x=x()-pos.x(), y=y()-pos.y();
-		return Math.sqrt(x*x+y*y);
+		int x = x() - pos.x(), y = y() - pos.y();
+		return Math.sqrt(x*x + y*y);
 	}
 	
 	default float divXY(){
@@ -32,10 +32,10 @@ public interface IVec2iR{
 	
 	
 	default boolean isZero(){
-		return x()==0&&y()==0;
+		return x() == 0 && y() == 0;
 	}
 	
 	default boolean equals(int x, int y){
-		return x()==x&&y()==y;
+		return x() == x && y() == y;
 	}
 }

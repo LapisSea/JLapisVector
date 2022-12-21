@@ -1,31 +1,27 @@
 package com.lapissea.vec.color;
 
 import com.lapissea.util.NotNull;
-import com.lapissea.util.ObjectSize;
 import com.lapissea.util.Rand;
 
 import java.nio.ByteBuffer;
 
 public interface IColorMSolid{
-	@ObjectSize.Getter
 	float r();
 	
-	@ObjectSize.Getter
 	float g();
 	
-	@ObjectSize.Getter
 	float b();
 	
 	default int rInt(){
-		return (int)(r()*255+0.5F);
+		return (int)(r()*255 + 0.5F);
 	}
 	
 	default int gInt(){
-		return (int)(g()*255+0.5F);
+		return (int)(g()*255 + 0.5F);
 	}
 	
 	default int bInt(){
-		return (int)(b()*255+0.5F);
+		return (int)(b()*255 + 0.5F);
 	}
 	
 	@NotNull

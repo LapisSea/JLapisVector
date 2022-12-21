@@ -1,19 +1,15 @@
 package com.lapissea.vec.interf;
 
 import com.lapissea.util.NotNull;
-import com.lapissea.util.ObjectSize.Getter;
 import gnu.trove.list.TFloatList;
 
 import java.nio.ByteBuffer;
 
 public interface IVec3fR{
-	@Getter
 	float x();
 	
-	@Getter
 	float y();
 	
-	@Getter
 	float z();
 	
 	
@@ -30,14 +26,14 @@ public interface IVec3fR{
 	}
 	
 	default double distanceTo(@NotNull IVec3fR vec){
-		float x=x()-vec.x();
-		float y=y()-vec.y();
-		float z=z()-vec.z();
-		return Math.sqrt(x*x+y*y+z*z);
+		float x = x() - vec.x();
+		float y = y() - vec.y();
+		float z = z() - vec.z();
+		return Math.sqrt(x*x + y*y + z*z);
 	}
 	
 	default float lengthSquared(){
-		return x()*x()+y()*y()+z()*z();
+		return x()*x() + y()*y() + z()*z();
 	}
 	
 	

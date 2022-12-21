@@ -6,13 +6,9 @@ import com.lapissea.vec.interf.IVec2iR;
 import com.lapissea.vec.interf.SimpleLoadable;
 import gnu.trove.list.TFloatList;
 
-import static com.lapissea.util.ObjectSize.*;
-
 public class Vec2f implements Calculateable<Vec2f>, SimpleLoadable<Vec2f>{
 	
-	public static final int SIZE=sizeof(Vec2f.class);
-	
-	public static final Vec2f ZERO=new Vec2f(){
+	public static final Vec2f ZERO = new Vec2f(){
 		
 		@Override
 		public float x(){
@@ -72,7 +68,7 @@ public class Vec2f implements Calculateable<Vec2f>, SimpleLoadable<Vec2f>{
 	
 	@NotNull
 	public Vec2f x(float x){
-		this.x=x;
+		this.x = x;
 		return this;
 	}
 	
@@ -82,14 +78,14 @@ public class Vec2f implements Calculateable<Vec2f>, SimpleLoadable<Vec2f>{
 	
 	@NotNull
 	public Vec2f y(float y){
-		this.y=y;
+		this.y = y;
 		return this;
 	}
 	
 	@NotNull
 	public Vec2f add(float x, float y){
-		x(x()+x);
-		y(y()+y);
+		x(x() + x);
+		y(y() + y);
 		return this;
 	}
 	
@@ -102,37 +98,37 @@ public class Vec2f implements Calculateable<Vec2f>, SimpleLoadable<Vec2f>{
 	@NotNull
 	@Override
 	public Vec2f sub(@NotNull Vec2f c){
-		x(x()-c.x());
-		y(y()-c.y());
+		x(x() - c.x());
+		y(y() - c.y());
 		return this;
 	}
 	
 	@NotNull
 	public Vec2f sub(float x, float y){
-		x(x()-x);
-		y(y()-y);
+		x(x() - x);
+		y(y() - y);
 		return this;
 	}
 	
 	@NotNull
 	public Vec2f sub(@NotNull IVec2iR vec){
-		x(x()-vec.x());
-		y(y()-vec.y());
+		x(x() - vec.x());
+		y(y() - vec.y());
 		return this;
 	}
 	
 	@NotNull
 	public Vec2f sub(float xy){
-		x(x()-xy);
-		y(y()-xy);
+		x(x() - xy);
+		y(y() - xy);
 		return this;
 	}
 	
 	@NotNull
 	@Override
 	public Vec2f subRev(@NotNull Vec2f c){
-		x(c.x()-x());
-		y(c.y()-y());
+		x(c.x() - x());
+		y(c.y() - y());
 		return this;
 	}
 	
@@ -221,7 +217,7 @@ public class Vec2f implements Calculateable<Vec2f>, SimpleLoadable<Vec2f>{
 	@NotNull
 	@Override
 	public String toString(){
-		return "Vec2f{x="+x()+", y="+y()+"}";
+		return "Vec2f{x=" + x() + ", y=" + y() + "}";
 	}
 	
 	@NotNull
@@ -267,23 +263,23 @@ public class Vec2f implements Calculateable<Vec2f>, SimpleLoadable<Vec2f>{
 	@NotNull
 	@Override
 	public Vec2f load(int offset, float[] data){
-		set(data[offset], data[offset+1]);
+		set(data[offset], data[offset + 1]);
 		return this;
 	}
 	
 	@NotNull
 	@Override
 	public Vec2f load(int offset, @NotNull TFloatList data){
-		return set(data.get(offset), data.get(offset+1));
+		return set(data.get(offset), data.get(offset + 1));
 	}
 	
 	public double length(){
-		return Math.sqrt(x()*x()+y()*y());
+		return Math.sqrt(x()*x() + y()*y());
 	}
 	
 	public double distanceTo(@NotNull IVec2iR pos){
-		float x=x()-pos.x(), y=y()-pos.y();
-		return Math.sqrt(x*x+y*y);
+		float x = x() - pos.x(), y = y() - pos.y();
+		return Math.sqrt(x*x + y*y);
 	}
 	
 	@NotNull

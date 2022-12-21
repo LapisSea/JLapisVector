@@ -2,7 +2,7 @@ package com.lapissea.vec.interf;
 
 
 public interface Calculateable<Type extends Calculateable<Type>>{
-
+	
 	Type add(Type c);
 	Type sub(Type c);
 	Type subRev(Type c);

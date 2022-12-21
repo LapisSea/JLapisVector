@@ -11,9 +11,9 @@ public interface IRotation{
 	
 	float w();
 	
-	default <T extends IVec3fR&IVec3fW> T rotate(T srcDest){
+	default <T extends IVec3fR & IVec3fW> T rotate(T srcDest){
 		return rotate(srcDest, srcDest);
 	}
 	
-	<T extends IVec3fR&IVec3fW> T rotate(T src, T dest);
+	<T extends IVec3fR & IVec3fW> T rotate(T src, T dest);
 }

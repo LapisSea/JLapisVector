@@ -8,7 +8,7 @@ import com.lapissea.vec.interf.Interpolateble;
 import com.lapissea.vec.interf.SimpleLoadable;
 import gnu.trove.list.TFloatList;
 
-import java.awt.*;
+import java.awt.Color;
 
 public class ColorM extends ColorMRead implements Calculateable<ColorM>, Interpolateble<ColorM>, SimpleLoadable<ColorM>{
 	
@@ -59,25 +59,25 @@ public class ColorM extends ColorMRead implements Calculateable<ColorM>, Interpo
 	
 	@NotNull
 	public ColorM r(float r){
-		this.r=MathUtil.snap(r, 0, 1);
+		this.r = MathUtil.snap(r, 0, 1);
 		return this;
 	}
 	
 	@NotNull
 	public ColorM g(float g){
-		this.g=MathUtil.snap(g, 0, 1);
+		this.g = MathUtil.snap(g, 0, 1);
 		return this;
 	}
 	
 	@NotNull
 	public ColorM b(float b){
-		this.b=MathUtil.snap(b, 0, 1);
+		this.b = MathUtil.snap(b, 0, 1);
 		return this;
 	}
 	
 	@NotNull
 	public ColorM a(float a){
-		this.a=MathUtil.snap(a, 0, 1);
+		this.a = MathUtil.snap(a, 0, 1);
 		return this;
 	}
 	
@@ -110,44 +110,44 @@ public class ColorM extends ColorMRead implements Calculateable<ColorM>, Interpo
 	
 	@NotNull
 	public ColorM add(float var){
-		r(r()+var);
-		g(g()+var);
-		b(b()+var);
-		a(a()+var);
+		r(r() + var);
+		g(g() + var);
+		b(b() + var);
+		a(a() + var);
 		return this;
 	}
 	
 	@NotNull
 	public ColorM addR(float r){
-		r(r()+r);
+		r(r() + r);
 		return this;
 	}
 	
 	@NotNull
 	public ColorM addG(float r){
-		g(g()+g);
+		g(g() + g);
 		return this;
 	}
 	
 	@NotNull
 	public ColorM addB(float b){
-		b(b()+b);
+		b(b() + b);
 		return this;
 	}
 	
 	@NotNull
 	public ColorM addA(float b){
-		a(a()+a);
+		a(a() + a);
 		return this;
 	}
 	
 	@NotNull
 	@Override
 	public ColorM add(@NotNull ColorM var){
-		r(r()+var.r());
-		g(g()+var.g());
-		b(b()+var.b());
-		a(a()+var.a());
+		r(r() + var.r());
+		g(g() + var.g());
+		b(b() + var.b());
+		a(a() + var.a());
 		return this;
 	}
 	
@@ -240,44 +240,44 @@ public class ColorM extends ColorMRead implements Calculateable<ColorM>, Interpo
 	
 	@NotNull
 	public ColorM sub(float var){
-		r(r()-var);
-		g(g()-var);
-		b(b()-var);
-		a(a()-var);
+		r(r() - var);
+		g(g() - var);
+		b(b() - var);
+		a(a() - var);
 		return this;
 	}
 	
 	@NotNull
 	public ColorM subR(float r){
-		r(r()-r);
+		r(r() - r);
 		return this;
 	}
 	
 	@NotNull
 	public ColorM subG(float r){
-		g(g()-g);
+		g(g() - g);
 		return this;
 	}
 	
 	@NotNull
 	public ColorM subB(float b){
-		b(b()-b);
+		b(b() - b);
 		return this;
 	}
 	
 	@NotNull
 	public ColorM subA(float b){
-		a(a()-a);
+		a(a() - a);
 		return this;
 	}
 	
 	@NotNull
 	@Override
 	public ColorM sub(@NotNull ColorM var){
-		r(r()-var.r());
-		g(g()-var.g());
-		b(b()-var.b());
-		a(a()-var.a());
+		r(r() - var.r());
+		g(g() - var.g());
+		b(b() - var.b());
+		a(a() - var.a());
 		return this;
 	}
 	
@@ -289,7 +289,7 @@ public class ColorM extends ColorMRead implements Calculateable<ColorM>, Interpo
 	
 	@NotNull
 	public static ColorM toColorM(IColorM color){
-		return color instanceof ColorM?(ColorM)color:new ColorM(color);
+		return color instanceof ColorM? (ColorM)color : new ColorM(color);
 	}
 	
 	@NotNull
@@ -307,47 +307,47 @@ public class ColorM extends ColorMRead implements Calculateable<ColorM>, Interpo
 	@NotNull
 	@Override
 	public ColorM sqrt(){
-		r=MathUtil.sqrt(r());
-		g=MathUtil.sqrt(g());
-		b=MathUtil.sqrt(b());
-		a=MathUtil.sqrt(a());
+		r = MathUtil.sqrt(r());
+		g = MathUtil.sqrt(g());
+		b = MathUtil.sqrt(b());
+		a = MathUtil.sqrt(a());
 		return this;
 	}
 	
 	@NotNull
 	@Override
 	public ColorM sq(){
-		r=MathUtil.sq(r());
-		g=MathUtil.sq(g());
-		b=MathUtil.sq(b());
-		a=MathUtil.sq(a());
+		r = MathUtil.sq(r());
+		g = MathUtil.sq(g());
+		b = MathUtil.sq(b());
+		a = MathUtil.sq(a());
 		return this;
 	}
 	
 	@NotNull
 	public ColorM set(int rgb){
-		r=(rgb >> 16&0xFF)/256F;
-		g=(rgb >> 8&0xFF)/256F;
-		b=(rgb&0xFF)/256F;
+		r = (rgb>>16&0xFF)/256F;
+		g = (rgb>>8&0xFF)/256F;
+		b = (rgb&0xFF)/256F;
 		return this;
 	}
 	
 	@NotNull
 	@Override
 	public ColorM set(@NotNull ColorM src){
-		r=src.r();
-		g=src.g();
-		b=src.b();
-		a=src.a();
+		r = src.r();
+		g = src.g();
+		b = src.b();
+		a = src.a();
 		return this;
 	}
 	
 	@NotNull
 	public ColorM set(@NotNull IColorM src){
-		r=src.r();
-		g=src.g();
-		b=src.b();
-		a=src.a();
+		r = src.r();
+		g = src.g();
+		b = src.b();
+		a = src.a();
 		return this;
 	}
 	
@@ -362,18 +362,18 @@ public class ColorM extends ColorMRead implements Calculateable<ColorM>, Interpo
 	
 	@NotNull
 	public ColorM toNoAlpha(){
-		r*=a();
-		g*=a();
-		b*=a();
-		a=1;
+		r *= a();
+		g *= a();
+		b *= a();
+		a = 1;
 		return this;
 	}
 	
 	@NotNull
 	public static ColorM interpolate(@NotNull ColorM dest, @NotNull IColorM v1, @NotNull IColorM v2, float percent){
-		if(percent==0) return dest.set(v1);
-		else if(percent==1) return dest.set(v2);
-		return dest.set(v1.r()+(v2.r()-v1.r())*percent, v1.g()+(v2.g()-v1.g())*percent, v1.b()+(v2.b()-v1.b())*percent, v1.a()+(v2.a()-v1.a())*percent);
+		if(percent == 0) return dest.set(v1);
+		else if(percent == 1) return dest.set(v2);
+		return dest.set(v1.r() + (v2.r() - v1.r())*percent, v1.g() + (v2.g() - v1.g())*percent, v1.b() + (v2.b() - v1.b())*percent, v1.a() + (v2.a() - v1.a())*percent);
 	}
 	
 	@NotNull
@@ -430,13 +430,13 @@ public class ColorM extends ColorMRead implements Calculateable<ColorM>, Interpo
 	@NotNull
 	@Override
 	public ColorM load(int offset, float[] data){
-		return set(data[offset], data[offset+1], data[offset+2], data[offset+3]);
+		return set(data[offset], data[offset + 1], data[offset + 2], data[offset + 3]);
 	}
 	
 	@NotNull
 	@Override
 	public ColorM load(int offset, @NotNull TFloatList data){
-		return set(data.get(offset), data.get(offset+1), data.get(offset+2), data.get(offset+3));
+		return set(data.get(offset), data.get(offset + 1), data.get(offset + 2), data.get(offset + 3));
 	}
 	
 }

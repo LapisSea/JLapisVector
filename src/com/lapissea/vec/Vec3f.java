@@ -7,13 +7,13 @@ import gnu.trove.list.TFloatList;
 
 public class Vec3f implements IVec3fR, IVec3fW, Interpolateble<Vec3f>, IRotation, SimpleLoadable<Vec3f>{
 	
-	private static final Quat4 ROTATION_QUAT=new Quat4();
+	private static final Quat4 ROTATION_QUAT = new Quat4();
 	
-	private static final long serialVersionUID=8084946802516068121L;
+	private static final long serialVersionUID = 8084946802516068121L;
 	
 	@NotNull
 	public static Vec3f interpolate(@NotNull Vec3f dest, @NotNull IVec3fR v1, @NotNull IVec3fR v2, float percent){
-		return dest.set(v1).add((v2.x()-v1.x())*percent, (v2.y()-v1.y())*percent, (v2.z()-v1.z())*percent);
+		return dest.set(v1).add((v2.x() - v1.x())*percent, (v2.y() - v1.y())*percent, (v2.z() - v1.z())*percent);
 	}
 	
 	public static Vec3f single(float f){
@@ -69,9 +69,9 @@ public class Vec3f implements IVec3fR, IVec3fW, Interpolateble<Vec3f>, IRotation
 	
 	@NotNull
 	public Vec3f add(float x, float y, float z){
-		this.x+=x;
-		this.y+=y;
-		this.z+=z;
+		this.x += x;
+		this.y += y;
+		this.z += z;
 		return this;
 	}
 	
@@ -82,19 +82,19 @@ public class Vec3f implements IVec3fR, IVec3fW, Interpolateble<Vec3f>, IRotation
 	
 	@NotNull
 	public Vec3f addX(float x){
-		x(x()+x);
+		x(x() + x);
 		return this;
 	}
 	
 	@NotNull
 	public Vec3f addY(float y){
-		y(y()+y);
+		y(y() + y);
 		return this;
 	}
 	
 	@NotNull
 	public Vec3f addZ(float z){
-		z(z()+z);
+		z(z() + z);
 		return this;
 	}
 	
@@ -136,15 +136,15 @@ public class Vec3f implements IVec3fR, IVec3fW, Interpolateble<Vec3f>, IRotation
 	
 	@NotNull
 	public <T extends IVec3fW> T crossProduct(@NotNull IVec3fR vec, @NotNull T dest){
-		dest.set(y()*vec.z()-z()*vec.y(), z()*vec.x()-x()*vec.z(), x()*vec.y()-y()*vec.x());
+		dest.set(y()*vec.z() - z()*vec.y(), z()*vec.x() - x()*vec.z(), x()*vec.y() - y()*vec.x());
 		return dest;
 	}
 	
 	@NotNull
 	public Vec3f directionToEuler(){
 		
-		float distanceX=-x(), distanceY=-y(), distanceZ=-z();
-		x((float)-Math.atan2(distanceY, Math.sqrt(distanceX*distanceX+distanceZ*distanceZ)));
+		float distanceX = -x(), distanceY = -y(), distanceZ = -z();
+		x((float)-Math.atan2(distanceY, Math.sqrt(distanceX*distanceX + distanceZ*distanceZ)));
 		//		x((float)-Math.atan2(distanceY, MathUtil.length(-distanceX, -distanceZ)));
 		y((float)Math.atan2(distanceX, -distanceZ));
 		z(0);
@@ -177,12 +177,12 @@ public class Vec3f implements IVec3fR, IVec3fW, Interpolateble<Vec3f>, IRotation
 	
 	@NotNull
 	public Vec3f eulerToDirection(){
-		double xCos=Math.cos(x());
-		double xSin=Math.sin(x());
+		double xCos = Math.cos(x());
+		double xSin = Math.sin(x());
 		
-		double y   =z()+Math.PI/2;
-		double yCos=Math.cos(y);
-		double ySin=Math.sin(y);
+		double y    = z() + Math.PI/2;
+		double yCos = Math.cos(y);
+		double ySin = Math.sin(y);
 		
 		set(xCos*yCos, -xSin, -xCos*ySin);
 		return this;
@@ -199,8 +199,8 @@ public class Vec3f implements IVec3fR, IVec3fW, Interpolateble<Vec3f>, IRotation
 	
 	public Vec3f set(float[] src, int pos){
 		this.x(src[pos]);
-		this.y(src[pos+1]);
-		this.z(src[pos+2]);
+		this.y(src[pos + 1]);
+		this.z(src[pos + 2]);
 		return this;
 	}
 	
@@ -224,13 +224,13 @@ public class Vec3f implements IVec3fR, IVec3fW, Interpolateble<Vec3f>, IRotation
 	@NotNull
 	@Override
 	public Vec3f load(int offset, float[] data){
-		return set(data[offset], data[offset+1], data[offset+2]);
+		return set(data[offset], data[offset + 1], data[offset + 2]);
 	}
 	
 	@NotNull
 	@Override
 	public Vec3f load(int offset, @NotNull TFloatList data){
-		return set(data.get(offset), data.get(offset+1), data.get(offset+2));
+		return set(data.get(offset), data.get(offset + 1), data.get(offset + 2));
 	}
 	
 	@NotNull
@@ -248,25 +248,25 @@ public class Vec3f implements IVec3fR, IVec3fW, Interpolateble<Vec3f>, IRotation
 	@NotNull
 	@Override
 	public Vec3f load(@NotNull String string, int start, int end){
-		if(end>string.length()) throw new IllegalArgumentException("End "+end+" can not be larger than total length of "+string.length());
+		if(end>string.length()) throw new IllegalArgumentException("End " + end + " can not be larger than total length of " + string.length());
 		if(start<0) throw new IllegalArgumentException("Start has to be positive!");
-		if(start >= end) throw new IllegalArgumentException("Start has to be smaller than end!");
+		if(start>=end) throw new IllegalArgumentException("Start has to be smaller than end!");
 		
-		boolean       begin=true, lastSpace=false;
-		StringBuilder buff =new StringBuilder();
-		int           rgba =0;
-		for(int i=start;i<end;i++){
-			char    c    =string.charAt(i);
-			boolean space=c==','||Character.isWhitespace(c);
+		boolean       begin = true, lastSpace = false;
+		StringBuilder buff  = new StringBuilder();
+		int           rgba  = 0;
+		for(int i = start; i<end; i++){
+			char    c     = string.charAt(i);
+			boolean space = c == ',' || Character.isWhitespace(c);
 			if(begin){
 				if(space) continue;
-				else begin=false;
+				else begin = false;
 			}
-			if(lastSpace&&space) continue;
+			if(lastSpace && space) continue;
 			
-			if(lastSpace=space){
+			if(lastSpace = space){
 				load(buff, rgba);
-				rgba=(rgba+1)%3;
+				rgba = (rgba + 1)%3;
 				buff.setLength(0);
 			}else buff.append(c);
 			
@@ -277,9 +277,9 @@ public class Vec3f implements IVec3fR, IVec3fW, Interpolateble<Vec3f>, IRotation
 	}
 	
 	private void load(@NotNull StringBuilder buff, int rgba){
-		int pos=buff.indexOf("=");
-		if(pos==-1){
-			float num=Float.parseFloat(buff.toString());
+		int pos = buff.indexOf("=");
+		if(pos == -1){
+			float num = Float.parseFloat(buff.toString());
 			// @formatter:off
 			switch(rgba){
 			case 0:x(num);break;
@@ -288,7 +288,7 @@ public class Vec3f implements IVec3fR, IVec3fW, Interpolateble<Vec3f>, IRotation
 			}
 			// @formatter:on
 		}else{
-			float num=Float.parseFloat(buff.substring(pos+1).trim());
+			float num = Float.parseFloat(buff.substring(pos + 1).trim());
 			// @formatter:off
 			switch(buff.charAt(0)){
 			case 'x':x(num);break;
@@ -362,7 +362,7 @@ public class Vec3f implements IVec3fR, IVec3fW, Interpolateble<Vec3f>, IRotation
 	
 	@NotNull
 	@Override
-	public <T extends IVec3fR&IVec3fW> T rotate(@NotNull T src, @NotNull T dest){
+	public <T extends IVec3fR & IVec3fW> T rotate(@NotNull T src, @NotNull T dest){
 		synchronized(ROTATION_QUAT){
 			return ROTATION_QUAT.set(this).rotate(src, dest);
 		}
@@ -382,7 +382,7 @@ public class Vec3f implements IVec3fR, IVec3fW, Interpolateble<Vec3f>, IRotation
 	
 	@NotNull
 	public <T extends IVec3fW> T normalise(@NotNull T dest){
-		float l=(float)length();
+		float l = (float)length();
 		dest.set(x/l, y/l, z/l);
 		return dest;
 	}
@@ -401,7 +401,7 @@ public class Vec3f implements IVec3fR, IVec3fW, Interpolateble<Vec3f>, IRotation
 	 * @return left dot right
 	 */
 	public static float dot(@NotNull Vec3f left, @NotNull Vec3f right){
-		return left.x*right.x+left.y*right.y+left.z*right.z;
+		return left.x*right.x + left.y*right.y + left.z*right.z;
 	}
 	
 	/**
@@ -412,9 +412,9 @@ public class Vec3f implements IVec3fR, IVec3fW, Interpolateble<Vec3f>, IRotation
 	 * @return the angle between the two vectors, in radians
 	 */
 	public static float angle(@NotNull Vec3f a, @NotNull Vec3f b){
-		float dls=(float)(dot(a, b)/(a.length()*b.length()));
-		if(dls<-1f) dls=-1f;
-		else if(dls>1.0f) dls=1.0f;
+		float dls = (float)(dot(a, b)/(a.length()*b.length()));
+		if(dls<-1f) dls = -1f;
+		else if(dls>1.0f) dls = 1.0f;
 		return (float)Math.acos(dls);
 	}
 	
@@ -452,7 +452,7 @@ public class Vec3f implements IVec3fR, IVec3fW, Interpolateble<Vec3f>, IRotation
 	
 	@NotNull
 	public Vec3f sub(float x, float y, float z){
-		return x(x()-x).y(y()-y).z(z()-z);
+		return x(x() - x).y(y() - y).z(z() - z);
 	}
 	
 	@NotNull
@@ -467,28 +467,28 @@ public class Vec3f implements IVec3fR, IVec3fW, Interpolateble<Vec3f>, IRotation
 	
 	@NotNull
 	public Vec3f subRev(@NotNull Vec3f c){
-		x(c.x()-x());
-		y(c.y()-y());
-		z(c.z()-z());
+		x(c.x() - x());
+		y(c.y() - y());
+		z(c.z() - z());
 		return this;
 	}
 	
 	public Vec3f subX(float x){
-		return x(x()-x);
+		return x(x() - x);
 	}
 	
 	public Vec3f subY(float y){
-		return y(y()-y);
+		return y(y() - y);
 	}
 	
 	public Vec3f subZ(float z){
-		return z(z()-z);
+		return z(z() - z);
 	}
 	
 	@NotNull
 	@Override
 	public String toString(){
-		StringBuilder sb=new StringBuilder(20);
+		StringBuilder sb = new StringBuilder(20);
 		
 		sb.append("Vec3f[");
 		sb.append(x);
@@ -513,7 +513,7 @@ public class Vec3f implements IVec3fR, IVec3fW, Interpolateble<Vec3f>, IRotation
 	@NotNull
 	@Override
 	public Vec3f x(float x){
-		this.x=x;
+		this.x = x;
 		return this;
 	}
 	
@@ -525,7 +525,7 @@ public class Vec3f implements IVec3fR, IVec3fW, Interpolateble<Vec3f>, IRotation
 	@NotNull
 	@Override
 	public Vec3f y(float y){
-		this.y=y;
+		this.y = y;
 		return this;
 	}
 	
@@ -537,21 +537,21 @@ public class Vec3f implements IVec3fR, IVec3fW, Interpolateble<Vec3f>, IRotation
 	@NotNull
 	@Override
 	public Vec3f z(float z){
-		this.z=z;
+		this.z = z;
 		return this;
 	}
 	
 	@Override
 	public boolean equals(@Nullable Object obj){
-		if(obj==null||!(obj instanceof IVec3fR)) return false;
-		IVec3fR o=(IVec3fR)obj;
-		return x()==o.x()&&y()==o.y()&&z()==o.z();
+		if(obj == null || !(obj instanceof IVec3fR)) return false;
+		IVec3fR o = (IVec3fR)obj;
+		return x() == o.x() && y() == o.y() && z() == o.z();
 	}
 	
 	public void write(int destPos, @NotNull TFloatList dest){
-		dest.set(destPos+0, x());
-		dest.set(destPos+1, y());
-		dest.set(destPos+2, z());
+		dest.set(destPos + 0, x());
+		dest.set(destPos + 1, y());
+		dest.set(destPos + 2, z());
 	}
 	
 	public void clampX(float min, float max){

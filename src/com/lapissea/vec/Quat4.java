@@ -8,13 +8,13 @@ import com.lapissea.vec.interf.Interpolateble;
 
 public class Quat4 implements IRotation, Interpolateble<Quat4>{
 	
-	final static double EPS2=1.0e-30;
+	final static double EPS2 = 1.0e-30;
 	
-	private float x,y,z,w;
+	private float x, y, z, w;
 	
 	public Quat4(){
-		x=y=z=0;
-		w=1;
+		x = y = z = 0;
+		w = 1;
 	}
 	
 	public Quat4(float x, float y, float z, float w){
@@ -27,15 +27,15 @@ public class Quat4 implements IRotation, Interpolateble<Quat4>{
 	}
 	
 	public Quat4(float[] q, int offset){
-		this(q[offset+0], q[offset+1], q[offset+2], q[offset+3]);
+		this(q[offset + 0], q[offset + 1], q[offset + 2], q[offset + 3]);
 	}
 	
 	
 	public void normalize(){
-		scale((float)(1/Math.sqrt(x*x+y*y+z*z+w*w)));
+		scale((float)(1/Math.sqrt(x*x + y*y + z*z + w*w)));
 		
 	}
-	
+
 //	public void set(Matrix3f m1){
 //		float ww=0.25f*(m1.m00+m1.m11+m1.m22+1.0f);
 //
@@ -83,65 +83,65 @@ public class Quat4 implements IRotation, Interpolateble<Quat4>{
 //	}
 	
 	public void set(float m1[][]){
-		float ww=0.25f*(m1[0][0]+m1[1][1]+m1[2][2]+1.0f);
+		float ww = 0.25f*(m1[0][0] + m1[1][1] + m1[2][2] + 1.0f);
 		
 		if(ww>=0){
 			if(ww>=EPS2){
-				w=(float)Math.sqrt(ww);
-				ww=0.25f/w;
-				x=(m1[2][1]-m1[1][2])*ww;
-				y=(m1[0][2]-m1[2][0])*ww;
-				z=(m1[1][0]-m1[0][1])*ww;
+				w = (float)Math.sqrt(ww);
+				ww = 0.25f/w;
+				x = (m1[2][1] - m1[1][2])*ww;
+				y = (m1[0][2] - m1[2][0])*ww;
+				z = (m1[1][0] - m1[0][1])*ww;
 				return;
 			}
 		}else{
-			w=0;
-			x=0;
-			y=0;
-			z=1;
+			w = 0;
+			x = 0;
+			y = 0;
+			z = 1;
 			return;
 		}
 		
-		w=0;
-		ww=-0.5f*(m1[1][1]+m1[2][2]);
+		w = 0;
+		ww = -0.5f*(m1[1][1] + m1[2][2]);
 		if(ww>=0){
 			if(ww>=EPS2){
-				x=(float)Math.sqrt(ww);
-				ww=0.5f/x;
-				y=m1[1][0]*ww;
-				z=m1[2][0]*ww;
+				x = (float)Math.sqrt(ww);
+				ww = 0.5f/x;
+				y = m1[1][0]*ww;
+				z = m1[2][0]*ww;
 				return;
 			}
 		}else{
-			x=0;
-			y=0;
-			z=1;
+			x = 0;
+			y = 0;
+			z = 1;
 			return;
 		}
 		
-		x=0;
-		ww=0.5f*(1.0f-m1[2][2]);
+		x = 0;
+		ww = 0.5f*(1.0f - m1[2][2]);
 		if(ww>=EPS2){
-			y=(float)Math.sqrt(ww);
-			z=m1[2][1]/(2.0f*y);
+			y = (float)Math.sqrt(ww);
+			z = m1[2][1]/(2.0f*y);
 			return;
 		}
 		
-		y=0;
-		z=1;
+		y = 0;
+		z = 1;
 	}
 	
 	public void scale(float s){
-		x*=s;
-		y*=s;
-		z*=s;
-		w*=s;
+		x *= s;
+		y *= s;
+		z *= s;
+		w *= s;
 	}
 	
 	@NotNull
 	@Override
 	public String toString(){
-		return "Quat4["+x+", "+y+", "+z+", "+w+"]";
+		return "Quat4[" + x + ", " + y + ", " + z + ", " + w + "]";
 	}
 	
 	public Quat4(@NotNull IVec3fR euler){
@@ -154,10 +154,10 @@ public class Quat4 implements IRotation, Interpolateble<Quat4>{
 	
 	@NotNull
 	public Quat4 mul(float f){
-		x*=f;
-		y*=f;
-		z*=f;
-		w*=f;
+		x *= f;
+		y *= f;
+		z *= f;
+		w *= f;
 		return this;
 	}
 	
@@ -169,22 +169,22 @@ public class Quat4 implements IRotation, Interpolateble<Quat4>{
 	
 	@NotNull
 	public Quat4 set(float x, float y, float z, float w){
-		this.x=x;
-		this.y=y;
-		this.z=z;
-		this.w=w;
+		this.x = x;
+		this.y = y;
+		this.z = z;
+		this.w = w;
 		return this;
 	}
 	
 	@NotNull
 	public Quat4 set(@NotNull Quat4 src){
-		x=src.x();
-		y=src.y();
-		z=src.z();
-		w=src.w();
+		x = src.x();
+		y = src.y();
+		z = src.z();
+		w = src.w();
 		return this;
 	}
-	
+
 //	public Matrix4f toRotationMatrix(Matrix4f dest){
 //		final float xy=x*y,xz=x*z,xw=x*w,yz=y*z,yw=y*w,zw=z*w,xSquared=x*x,ySquared=y*y,zSquared=z*z;
 //		dest.m00=1-2*(ySquared+zSquared);
@@ -238,17 +238,17 @@ public class Quat4 implements IRotation, Interpolateble<Quat4>{
 	
 	@NotNull
 	public static Quat4 interpolate(@NotNull Quat4 dest, @NotNull Quat4 a, @NotNull Quat4 b, float blend){
-		float dot=a.w*b.w+a.x*b.x+a.y*b.y+a.z*b.z,blendI=1f-blend;
+		float dot = a.w*b.w + a.x*b.x + a.y*b.y + a.z*b.z, blendI = 1f - blend;
 		if(dot<0){
-			dest.w=blendI*a.w+blend*-b.w;
-			dest.x=blendI*a.x+blend*-b.x;
-			dest.y=blendI*a.y+blend*-b.y;
-			dest.z=blendI*a.z+blend*-b.z;
+			dest.w = blendI*a.w + blend*-b.w;
+			dest.x = blendI*a.x + blend*-b.x;
+			dest.y = blendI*a.y + blend*-b.y;
+			dest.z = blendI*a.z + blend*-b.z;
 		}else{
-			dest.w=blendI*a.w+blend*b.w;
-			dest.x=blendI*a.x+blend*b.x;
-			dest.y=blendI*a.y+blend*b.y;
-			dest.z=blendI*a.z+blend*b.z;
+			dest.w = blendI*a.w + blend*b.w;
+			dest.x = blendI*a.x + blend*b.x;
+			dest.y = blendI*a.y + blend*b.y;
+			dest.z = blendI*a.z + blend*b.z;
 		}
 		dest.normalize();
 		return dest;
@@ -256,12 +256,12 @@ public class Quat4 implements IRotation, Interpolateble<Quat4>{
 	
 	@NotNull
 	public Quat4 set(@NotNull IVec3fR euler){
-		double x2=euler.x()/2,y2=euler.y()/2,z2=euler.z()/2,c1=Math.cos(y2),s1=Math.sin(y2),c2=Math.cos(z2),s2=Math.sin(z2),c3=Math.cos(x2),s3=Math.sin(x2),c1c2=c1*c2,s1s2=s1*s2;
+		double x2 = euler.x()/2, y2 = euler.y()/2, z2 = euler.z()/2, c1 = Math.cos(y2), s1 = Math.sin(y2), c2 = Math.cos(z2), s2 = Math.sin(z2), c3 = Math.cos(x2), s3 = Math.sin(x2), c1c2 = c1*c2, s1s2 = s1*s2;
 		
-		w((float)(c1c2*c3-s1s2*s3));
-		x((float)(c1c2*s3+s1s2*c3));
-		y((float)(s1*c2*c3+c1*s2*s3));
-		z((float)(c1*s2*c3-s1*c2*s3));
+		w((float)(c1c2*c3 - s1s2*s3));
+		x((float)(c1c2*s3 + s1s2*c3));
+		y((float)(s1*c2*c3 + c1*s2*s3));
+		z((float)(c1*s2*c3 - s1*c2*s3));
 		normalize();
 		return this;
 	}
@@ -288,61 +288,61 @@ public class Quat4 implements IRotation, Interpolateble<Quat4>{
 	
 	@NotNull
 	public Quat4 x(float x){
-		this.x=x;
+		this.x = x;
 		return this;
 	}
 	
 	@NotNull
 	public Quat4 y(float y){
-		this.y=y;
+		this.y = y;
 		return this;
 	}
 	
 	@NotNull
 	public Quat4 z(float z){
-		this.z=z;
+		this.z = z;
 		return this;
 	}
 	
 	@NotNull
 	public Quat4 w(float w){
-		this.w=w;
+		this.w = w;
 		return this;
 	}
 	
 	@NotNull
 	@Override
-	public <T extends IVec3fR&IVec3fW> T rotate(@NotNull T src, @NotNull T dest){
-		float k0=w*w-0.5f;
+	public <T extends IVec3fR & IVec3fW> T rotate(@NotNull T src, @NotNull T dest){
+		float k0 = w*w - 0.5f;
 		float k1;
-		float rx,ry,rz;
+		float rx, ry, rz;
 		
 		// k1 = Q.V
-		k1=src.x()*x;
-		k1+=src.y()*y;
-		k1+=src.z()*z;
+		k1 = src.x()*x;
+		k1 += src.y()*y;
+		k1 += src.z()*z;
 		
 		// (qq-1/2)V+(Q.V)Q
-		rx=src.x()*k0+x*k1;
-		ry=src.y()*k0+y*k1;
-		rz=src.z()*k0+z*k1;
+		rx = src.x()*k0 + x*k1;
+		ry = src.y()*k0 + y*k1;
+		rz = src.z()*k0 + z*k1;
 		
 		// (Q.V)Q+(qq-1/2)V+q(QxV)
-		rx+=w*(y*src.z()-z*src.y());
-		ry+=w*(z*src.x()-x*src.z());
-		rz+=w*(x*src.y()-y*src.x());
+		rx += w*(y*src.z() - z*src.y());
+		ry += w*(z*src.x() - x*src.z());
+		rz += w*(x*src.y() - y*src.x());
 		
 		//  2((Q.V)Q+(qq-1/2)V+q(QxV))
-		rx+=rx;
-		ry+=ry;
-		rz+=rz;
+		rx += rx;
+		ry += ry;
+		rz += rz;
 		dest.x(rx);
 		dest.y(ry);
 		dest.z(rz);
 		
 		return dest;
 	}
-	
+
 //	public Quat4 fromMatrix(Matrix4f matrix){
 //		return fromMatrix(this, matrix);
 //	}
@@ -393,33 +393,33 @@ public class Quat4 implements IRotation, Interpolateble<Quat4>{
 	
 	@NotNull
 	public <T extends IVec3fW> T forward(@NotNull T dest){
-		dest.x(2*(x*z+w*y));
-		dest.y(2*(y*z-w*x));
-		dest.z(1-2*(x*x+y*y));
+		dest.x(2*(x*z + w*y));
+		dest.y(2*(y*z - w*x));
+		dest.z(1 - 2*(x*x + y*y));
 		return dest;
 	}
 	
 	@NotNull
 	public <T extends IVec3fW> T up(@NotNull T dest){
-		dest.x(2*(x*y-w*z));
-		dest.y(1-2*(x*x+z*z));
-		dest.z(2*(y*z+w*x));
+		dest.x(2*(x*y - w*z));
+		dest.y(1 - 2*(x*x + z*z));
+		dest.z(2*(y*z + w*x));
 		return dest;
 	}
 	
 	@NotNull
 	public <T extends IVec3fW> T left(@NotNull T dest){
-		dest.x(1-2*(y*y+z*z));
-		dest.y(2*(x*y+w*z));
-		dest.z(2*(x*z-w*y));
+		dest.x(1 - 2*(y*y + z*z));
+		dest.y(2*(x*y + w*z));
+		dest.z(2*(x*z - w*y));
 		return dest;
 	}
 	
 	@Override
 	public boolean equals(Object obj){
-		if(obj==this) return true;
+		if(obj == this) return true;
 		if(!(obj instanceof Quat4)) return false;
-		Quat4 q=(Quat4)obj;
-		return x==q.x&&y==q.y&&z==q.z&&w==q.w;
+		Quat4 q = (Quat4)obj;
+		return x == q.x && y == q.y && z == q.z && w == q.w;
 	}
 }

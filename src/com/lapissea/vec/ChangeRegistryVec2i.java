@@ -2,7 +2,8 @@ package com.lapissea.vec;
 
 import com.lapissea.util.NotNull;
 
-import java.awt.*;
+import java.awt.Dimension;
+import java.awt.Point;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
@@ -12,22 +13,22 @@ public class ChangeRegistryVec2i extends Vec2i{
 	private List<Consumer<ChangeRegistryVec2i>> listeners;
 	
 	public boolean register(Runnable listener){
-		return register(v->listener.run());
+		return register(v -> listener.run());
 	}
 	
 	public boolean register(Consumer<ChangeRegistryVec2i> listener){
-		if(listeners==null) listeners=new ArrayList<>(2);
+		if(listeners == null) listeners = new ArrayList<>(2);
 		else if(listeners.contains(listener)) return false;
 		listeners.add(listener);
 		return true;
 	}
 	
 	public boolean unregister(Consumer<ChangeRegistryVec2i> listener){
-		return listeners!=null&&listeners.remove(listener);
+		return listeners != null && listeners.remove(listener);
 	}
 	
 	public void dispatch(ChangeRegistryVec2i obj){
-		if(listeners==null) return;
+		if(listeners == null) return;
 		for(Consumer<ChangeRegistryVec2i> listener : listeners){
 			listener.accept(obj);
 		}
@@ -36,7 +37,7 @@ public class ChangeRegistryVec2i extends Vec2i{
 	
 	@Override
 	public ChangeRegistryVec2i set(int x, int y){
-		if(x()==x&&y()==y) return this;
+		if(x() == x && y() == y) return this;
 		
 		super.set(x, y);
 		dispatch(this);

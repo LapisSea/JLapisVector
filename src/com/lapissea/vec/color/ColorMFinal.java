@@ -3,7 +3,7 @@ package com.lapissea.vec.color;
 import com.lapissea.util.MathUtil;
 import com.lapissea.util.NotNull;
 
-import java.awt.*;
+import java.awt.Color;
 
 public final class ColorMFinal implements IColorM{
 	
@@ -27,16 +27,16 @@ public final class ColorMFinal implements IColorM{
 	}
 	
 	public ColorMFinal(float r, float g, float b, float a){
-		this.r=MathUtil.snap(r, 0, 1);
-		this.g=MathUtil.snap(g, 0, 1);
-		this.b=MathUtil.snap(b, 0, 1);
-		this.a=MathUtil.snap(a, 0, 1);
-		rInt=(int)(r*255+0.5F);
-		gInt=(int)(g*255+0.5F);
-		bInt=(int)(b*255+0.5F);
-		aInt=(int)(a*255+0.5F);
+		this.r = MathUtil.snap(r, 0, 1);
+		this.g = MathUtil.snap(g, 0, 1);
+		this.b = MathUtil.snap(b, 0, 1);
+		this.a = MathUtil.snap(a, 0, 1);
+		rInt = (int)(r*255 + 0.5F);
+		gInt = (int)(g*255 + 0.5F);
+		bInt = (int)(b*255 + 0.5F);
+		aInt = (int)(a*255 + 0.5F);
 		
-		hash=(aInt&0xFF)<<24|(rInt&0xFF)<<16|(gInt&0xFF)<<8|(bInt&0xFF)<<0;
+		hash = (aInt&0xFF)<<24|(rInt&0xFF)<<16|(gInt&0xFF)<<8|(bInt&0xFF)<<0;
 	}
 	
 	@Override
@@ -85,7 +85,7 @@ public final class ColorMFinal implements IColorM{
 	
 	@Override
 	public String toString(){
-		return "(r="+r()+", g="+g()+", b="+b()+", a="+a()+")";
+		return "(r=" + r() + ", g=" + g() + ", b=" + b() + ", a=" + a() + ")";
 	}
 	
 	@Override
@@ -95,11 +95,11 @@ public final class ColorMFinal implements IColorM{
 	
 	@Override
 	public boolean equals(Object obj){
-		return obj instanceof IColorM&&equals((IColorM)obj);
+		return obj instanceof IColorM && equals((IColorM)obj);
 	}
 	
 	public boolean equals(@NotNull IColorM obj){
-		return (obj.r()==r()||obj.rInt()==rInt())&&(obj.g()==g()||obj.gInt()==gInt())&&(obj.b()==b()||obj.bInt()==bInt())&&(obj.a()==a()||obj.aInt()==aInt());
+		return (obj.r() == r() || obj.rInt() == rInt()) && (obj.g() == g() || obj.gInt() == gInt()) && (obj.b() == b() || obj.bInt() == bInt()) && (obj.a() == a() || obj.aInt() == aInt());
 	}
 	
 }

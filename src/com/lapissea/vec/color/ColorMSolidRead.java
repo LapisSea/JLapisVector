@@ -3,7 +3,7 @@ package com.lapissea.vec.color;
 import com.lapissea.util.MathUtil;
 import com.lapissea.util.NotNull;
 
-import java.awt.*;
+import java.awt.Color;
 
 public class ColorMSolidRead implements IColorMSolid{
 	
@@ -14,7 +14,7 @@ public class ColorMSolidRead implements IColorMSolid{
 	}
 	
 	public ColorMSolidRead(){
-		r=g=b=1;
+		r = g = b = 1;
 	}
 	
 	public ColorMSolidRead(double r, double g, double b){
@@ -26,9 +26,9 @@ public class ColorMSolidRead implements IColorMSolid{
 	}
 	
 	public ColorMSolidRead(float r, float g, float b){
-		this.r=MathUtil.snap(r, 0, 1);
-		this.g=MathUtil.snap(g, 0, 1);
-		this.b=MathUtil.snap(b, 0, 1);
+		this.r = MathUtil.snap(r, 0, 1);
+		this.g = MathUtil.snap(g, 0, 1);
+		this.b = MathUtil.snap(b, 0, 1);
 	}
 	
 	@Override
@@ -49,21 +49,21 @@ public class ColorMSolidRead implements IColorMSolid{
 	@NotNull
 	@Override
 	public String toString(){
-		return "{r="+r()+", g="+g()+", b="+b()+"}";
+		return "{r=" + r() + ", g=" + g() + ", b=" + b() + "}";
 	}
 	
 	@Override
 	public int hashCode(){
-		return ((int)(r*255+0.5)&0xFF)<<16|((int)(g*255+0.5)&0xFF)<<8|((int)(b*255+0.5)&0xFF);
+		return ((int)(r*255 + 0.5)&0xFF)<<16|((int)(g*255 + 0.5)&0xFF)<<8|((int)(b*255 + 0.5)&0xFF);
 	}
 	
 	@Override
 	public boolean equals(Object obj){
-		return obj instanceof IColorM&&equals((IColorM)obj);
+		return obj instanceof IColorM && equals((IColorM)obj);
 	}
 	
 	public boolean equals(@NotNull IColorM obj){
-		return (obj.r()==r()||obj.rInt()==rInt())&&(obj.g()==g()||obj.gInt()==gInt())&&(obj.b()==b()||obj.bInt()==bInt());
+		return (obj.r() == r() || obj.rInt() == rInt()) && (obj.g() == g() || obj.gInt() == gInt()) && (obj.b() == b() || obj.bInt() == bInt());
 	}
 	
 }

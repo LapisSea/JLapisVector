@@ -3,13 +3,14 @@ package com.lapissea.vec;
 import com.lapissea.util.NotNull;
 import com.lapissea.vec.interf.IVec2iR;
 
-import java.awt.*;
+import java.awt.Dimension;
+import java.awt.Point;
 import java.io.Serializable;
 import java.util.function.BiConsumer;
 
 public class Vec2iFinal implements Serializable, IVec2iR{
 	
-	private static final long serialVersionUID=7737581116406153679L;
+	private static final long serialVersionUID = 7737581116406153679L;
 	
 	private final int x;
 	private final int y;
@@ -35,8 +36,8 @@ public class Vec2iFinal implements Serializable, IVec2iR{
 	}
 	
 	public Vec2iFinal(int x, int y){
-		this.x=x;
-		this.y=y;
+		this.x = x;
+		this.y = y;
 	}
 	
 	@Override
@@ -62,7 +63,7 @@ public class Vec2iFinal implements Serializable, IVec2iR{
 	@NotNull
 	@Override
 	public String toString(){
-		return "Vec2iF{x="+x()+", y="+y()+"}";
+		return "Vec2iF{x=" + x() + ", y=" + y() + "}";
 	}
 	
 	@NotNull
@@ -80,13 +81,13 @@ public class Vec2iFinal implements Serializable, IVec2iR{
 	@Override
 	public boolean equals(Object obj){
 		if(!(obj instanceof IVec2iR)) return false;
-		IVec2iR other=(IVec2iR)obj;
-		return x()==other.x()&&y()==other.y();
+		IVec2iR other = (IVec2iR)obj;
+		return x() == other.x() && y() == other.y();
 	}
 	
 	@Override
 	public int hashCode(){
-		return (x()<<16)+y();
+		return (x()<<16) + y();
 	}
 	
 	@NotNull

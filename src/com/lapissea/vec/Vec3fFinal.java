@@ -8,7 +8,7 @@ import com.lapissea.vec.interf.IVec3fW;
 
 public class Vec3fFinal implements IVec3fR, IRotation{
 	
-	private static final Quat4 ROTATION_QUAT=new Quat4();
+	private static final Quat4 ROTATION_QUAT = new Quat4();
 	
 	private final float x, y, z;
 	
@@ -29,9 +29,9 @@ public class Vec3fFinal implements IVec3fR, IRotation{
 	}
 	
 	public Vec3fFinal(float x, float y, float z){
-		this.x=x;
-		this.y=y;
-		this.z=z;
+		this.x = x;
+		this.y = y;
+		this.z = z;
 	}
 	
 	public Vec3fFinal(float[] data){
@@ -44,7 +44,7 @@ public class Vec3fFinal implements IVec3fR, IRotation{
 	
 	@NotNull
 	public <T extends IVec3fW> T crossProduct(@NotNull IVec3fR vec, @NotNull T dest){
-		dest.set(y()*vec.z()-z()*vec.y(), z()*vec.x()-x()*vec.z(), x()*vec.y()-y()*vec.x());
+		dest.set(y()*vec.z() - z()*vec.y(), z()*vec.x() - x()*vec.z(), x()*vec.y() - y()*vec.x());
 		return dest;
 	}
 	
@@ -56,13 +56,13 @@ public class Vec3fFinal implements IVec3fR, IRotation{
 	@NotNull
 	@Override
 	public String toString(){
-		String sb="Vec3fF["+
-		          x+
-		          ", "+
-		          y+
-		          ", "+
-		          z+
-		          ']';
+		String sb = "Vec3fF[" +
+		            x +
+		            ", " +
+		            y +
+		            ", " +
+		            z +
+		            ']';
 		
 		return sb;
 	}
@@ -91,7 +91,7 @@ public class Vec3fFinal implements IVec3fR, IRotation{
 	
 	@NotNull
 	@Override
-	public <T extends IVec3fR&IVec3fW> T rotate(@NotNull T src, @NotNull T dest){
+	public <T extends IVec3fR & IVec3fW> T rotate(@NotNull T src, @NotNull T dest){
 		synchronized(ROTATION_QUAT){
 			return ROTATION_QUAT.set(this).rotate(src, dest);
 		}
@@ -99,8 +99,8 @@ public class Vec3fFinal implements IVec3fR, IRotation{
 	
 	@Override
 	public boolean equals(@Nullable Object obj){
-		if(obj==null||!(obj instanceof IVec3fR)) return false;
-		IVec3fR o=(IVec3fR)obj;
-		return x()==o.x()&&y()==o.y()&&y()==o.y();
+		if(obj == null || !(obj instanceof IVec3fR)) return false;
+		IVec3fR o = (IVec3fR)obj;
+		return x() == o.x() && y() == o.y() && y() == o.y();
 	}
 }
